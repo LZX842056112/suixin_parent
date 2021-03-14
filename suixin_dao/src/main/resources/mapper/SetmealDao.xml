@@ -10,4 +10,13 @@
     <insert id="setSetmealAndTravelGroup" parameterType="map">
         insert into t_setmeal_travelgroup(setmeal_id,travelgroup_id) value(#{setmealId},#{travelgroupId})
     </insert>
+
+    <select id="findPage" resultType="setmeal" parameterType="string">
+        select id,name,code,helpCode,sex,age,price,remark,attention,img from t_setmeal
+        <where>
+            <if test="value!=null and value.length>0">
+                name like "%"#{value}"%" and code like "%"#{value}"%" and helpCode like "%"#{value}"%"
+            </if>
+        </where>
+    </select>
 </mapper>
