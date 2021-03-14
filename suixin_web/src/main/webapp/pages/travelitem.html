@@ -315,6 +315,7 @@
 					}).then(() => {
                         axios.post('/travelItem/deleteById.do?id='+row.id).then((res)=>{
                             if (res.data.flag){
+                                this.pagination.currentPage = 1;
                                 this.$message({showClose: true, type: 'success', message: res.data.message});
                             }else {
                                 this.$message({showClose: true, type: 'error', message: res.data.message});

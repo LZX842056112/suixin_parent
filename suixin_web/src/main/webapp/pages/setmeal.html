@@ -252,7 +252,9 @@
             methods: {
                 //文件上传成功后的钩子，response为服务端返回的值，file为当前上传的文件封装成的js对象
                 handleAvatarSuccess(res, file) {
-
+                    this.imageUrl = "http://qpbsgd6x4.hn-bkt.clouddn.com/" + res.data;
+                    this.formData.img = res.data;
+                    this.$message({showClose:true,message:res.message,type:res.flag?'success':'error'});
                 },
                 //上传图片之前执行
                 beforeAvatarUpload(file) {
@@ -268,7 +270,15 @@
                 },
                 //添加
                 handleAdd () {
-
+                    axios.post('/setmeal/add.do?travelgroupIds='+this.travelgroupIds,this.formData).then((res)=>{
+                        if (res.data.flag){
+                            this.dialogFormVisible = false;
+                            this.findPage();
+                            this.$message({showClose:true,type:'success',message:res.data.message});
+                        }else {
+                            this.$message({showClose:true,type:'error',message:res.data.message});
+                        }
+                    })
                 },
                 //分页查询
                 findPage() {
