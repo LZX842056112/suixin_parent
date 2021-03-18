@@ -66,4 +66,8 @@ public class MessageConstant {
     public static final String EXPORT_BUSINESS_REPORT_FAIL = "导出运营统计数据失败";
     public static final String GET_SETMEAL_LIST_SUCCESS = "查询套餐列表数据成功";
     public static final String GET_SETMEAL_LIST_FAIL = "查询套餐列表数据失败";
+    public static final String QUERY_TRAVELITEMID_SUCCESS = "查询自由行ID成功";
+    public static final String QUERY_TRAVELITEMID_FAIL = "查询自有行ID失败";
+    public static final String UPLOAD_FAIL = "上传失败";
+    public static final String VALIDATECODE_NOTNULL_ERROR = "校验码失效";
 }

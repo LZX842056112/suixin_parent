@@ -15,6 +15,7 @@
         <module>suixin_service</module>
         <module>suixin_web</module>
         <module>suixin_jobs</module>
+        <module>suixin_mobile_web</module>
     </modules>
 
     <packaging>pom</packaging>
