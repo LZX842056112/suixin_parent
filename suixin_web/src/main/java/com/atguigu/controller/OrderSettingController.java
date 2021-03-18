@@ -56,10 +56,10 @@ public class OrderSettingController {
     public Result editNumberByDate(@RequestBody Map<String,Object> map){
         try {
             orderSettingService.editNumberByDate(map);
-            return new Result(true, MessageConstant.GET_ORDERSETTING_SUCCESS);
+            return new Result(true, MessageConstant.ORDERSETTING_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result(false, MessageConstant.GET_ORDERSETTING_FAIL);
+            return new Result(false, MessageConstant.ORDERSETTING_FAIL);
         }
     }
 }
