@@ -19,4 +19,8 @@
             </if>
         </where>
     </select>
+
+    <select id="getSetmeal" resultType="setmeal">
+        select id,name,code,helpCode,sex,age,price,remark,attention,img from t_setmeal
+    </select>
 </mapper>

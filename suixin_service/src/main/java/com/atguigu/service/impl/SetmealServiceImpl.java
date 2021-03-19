@@ -48,4 +48,9 @@ public class SetmealServiceImpl implements SetmealService{
         Page<Setmeal> page = setmealDao.findPage(queryString);
         return new PageResult(page.getTotal(),page.getResult());
     }
+
+    @Override
+    public List<Setmeal> getSetmeal() {
+        return setmealDao.getSetmeal();
+    }
 }
