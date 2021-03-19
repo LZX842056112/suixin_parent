@@ -63,4 +63,11 @@
         select id,code,name,sex,age,price,type,remark,attention from t_travelitem
     </select>
 
+    <select id="findTravelItemsByTravelGroupId" parameterType="integer" resultType="travelItem">
+        select id,code,name,sex,age,price,type,remark,attention
+        from t_travelitem,t_travelgroup_travelitem
+        where t_travelgroup_travelitem.travelitem_id = t_travelitem.id
+        and t_travelgroup_travelitem.travelgroup_id=#{id}
+    </select>
+
 </mapper>

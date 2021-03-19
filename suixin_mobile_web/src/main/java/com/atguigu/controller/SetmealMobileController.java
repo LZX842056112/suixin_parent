@@ -26,4 +26,15 @@ public class SetmealMobileController {
             return new Result(false, MessageConstant.QUERY_SETMEAL_FAIL);
         }
     }
+
+    @RequestMapping("/findById")
+    public Result findById(Integer id){
+        try {
+            Setmeal setmeal = setmealService.findById(id);
+            return new Result(true, MessageConstant.QUERY_SETMEAL_SUCCESS,setmeal);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, MessageConstant.QUERY_SETMEAL_FAIL);
+        }
+    }
 }

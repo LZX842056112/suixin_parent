@@ -66,6 +66,7 @@
                             <div class="item flex3">
                                 <label v-for="travelItem in travelGroup.travelItems">
                                     {{travelItem.name}}
+                                    <br/>
                                 </label>
                             </div>
                             <div class="item flex3">{{travelGroup.remark}}</div>
@@ -95,7 +96,7 @@
             axios.post("/setmeal/findById.do?id=" + id).then((response) => {
                 if(response.data.flag){
                     this.setmeal = response.data.data;
-                    this.imgUrl = 'http://q4x3lzs4r.bkt.clouddn.com/' + this.setmeal.img;
+                    this.imgUrl = 'http://qpbsgd6x4.hn-bkt.clouddn.com/' + this.setmeal.img;
                 }
             });
         }

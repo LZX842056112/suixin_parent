@@ -15,4 +15,6 @@ public interface SetmealDao {
     Page<Setmeal> findPage(String queryString);
     //查询全部套餐游
     List<Setmeal> getSetmeal();
+    //根据id查询套餐游
+    Setmeal findById(Integer id);
 }

@@ -12,4 +12,6 @@ public interface SetmealService {
     PageResult findPage(Integer currentPage, Integer pageSize, String queryString);
     //查询全部套餐游
     List<Setmeal> getSetmeal();
+    //根据id查询套餐游
+    Setmeal findById(Integer id);
 }

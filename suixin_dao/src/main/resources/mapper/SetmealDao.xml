@@ -23,4 +23,21 @@
     <select id="getSetmeal" resultType="setmeal">
         select id,name,code,helpCode,sex,age,price,remark,attention,img from t_setmeal
     </select>
+
+    <resultMap id="findTravelGroups" type="setmeal">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="helpCode" column="helpCode"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <result property="price" column="price"/>
+        <result property="remark" column="remark"/>
+        <result property="attention" column="attention"/>
+        <result property="img" column="img"/>
+        <collection property="travelGroups" column="id" select="com.atguigu.dao.TravelGroupDao.findTravelGroupsBySetmealId"/>
+    </resultMap>
+    <select id="findById" parameterType="integer" resultMap="findTravelGroups">
+        select id,name,code,helpCode,sex,age,price,remark,attention,img from t_setmeal where id=#{id}
+    </select>
 </mapper>

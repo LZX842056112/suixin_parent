@@ -52,4 +52,20 @@
         select id,code,name,helpCode,sex,remark,attention from t_travelgroup
     </select>
 
+    <resultMap id="findTravelItems" type="travelGroup">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="helpCode" column="helpCode"/>
+        <result property="sex" column="sex"/>
+        <result property="remark" column="remark"/>
+        <result property="attention" column="attention"/>
+        <collection property="travelItems" column="id" select="com.atguigu.dao.TravelItemDao.findTravelItemsByTravelGroupId"/>
+    </resultMap>
+    <select id="findTravelGroupsBySetmealId" parameterType="integer" resultMap="findTravelItems">
+         select id,code,name,helpCode,sex,remark,attention
+         from t_travelgroup,t_setmeal_travelgroup
+         where t_travelgroup.id = t_setmeal_travelgroup.travelgroup_id
+         and t_setmeal_travelgroup.setmeal_id=#{id}
+    </select>
 </mapper>
