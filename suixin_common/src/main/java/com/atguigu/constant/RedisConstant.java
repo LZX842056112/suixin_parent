@@ -1,4 +1,4 @@
-package com.atguigu.util;
+package com.atguigu.constant;
 
 public class RedisConstant {
     //套餐图片的所有图片名称（七牛）

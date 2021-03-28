@@ -33,7 +33,7 @@
             <div class="contentBox">
                 <div class="card">
                     <div class="">
-                        <img :src="'http://pqjroc654.bkt.clouddn.com/'+setmeal.img" width="100%" height="100%" />
+                        <img :src="imgUrl" width="100%" height="100%" />
                     </div>
                     <div class="project-text">
                         <h4 class="tit">{{setmeal.name}}</h4>
@@ -104,6 +104,7 @@
             var vue = new Vue({
                 el:'#app',
                 data:{
+                    imgUrl:null,//套餐对应的图片链接
                     setmeal:{},//套餐信息
                     orderInfo:{
                         setmealId:id,
@@ -113,12 +114,48 @@
                 methods:{
                     //发送验证码
                     sendValidateCode(){
+                        var telephone = this.orderInfo.telephone;
+                        if (!checkTelephone(telephone)) {
+                            this.$message({showClose:true,type:'error',message:'请输入正确的手机号'});
+                            return false;
+                        }
+                        validateCodeButton = $("#validateCodeButton")[0];
+                        clock = window.setInterval(doLoop, 1000); //一秒执行一次
+                        axios.post("/validateCode/send4Order.do?telephone=" + telephone).then((response) => {
+                            if(!response.data.flag){
+                                //验证码发送失败
+                                this.$message({showClose:true,type:'error',message:res.data.message});
+                            }
+                        });
                     },
                     //提交预约
                     submitOrder(){
+                        var telephone = this.orderInfo.telephone;
+                        var idCard = this.orderInfo.idCard;
+                        if (!checkTelephone(telephone)) {
+                            this.$message({showClose:true,type:'error',message:'请输入正确的手机号'});
+                            return false;
+                        }
+                        if (!checkIdCard(idCard)){
+                            this.$message({showClose:true,type:'error',message:'请输入正确的身份证号'});
+                            return false;
+                        }
+                        axios.post('/order/submit.do',this.orderInfo).then((res)=>{
+                            if (res.data.flag){
+                                window.location.href = "orderSuccess.html?orderId="+res.data.data.id;
+                            }else {
+                                this.$message({showClose:true,type:'error',message:res.data.message});
+                            }
+                        })
                     }
                 },
                 mounted(){
+                    axios.post("/setmeal/findById.do?id=" + id).then((response) => {
+                        if(response.data.flag){
+                            this.setmeal = response.data.data;
+                            this.imgUrl = 'http://qpbsgd6x4.hn-bkt.clouddn.com/' + this.setmeal.img;
+                        }
+                    });
                 }
             });
         </script>

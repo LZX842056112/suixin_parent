@@ -8,7 +8,7 @@ import com.atguigu.entity.Result;
 import com.atguigu.pojo.Setmeal;
 import com.atguigu.service.SetmealService;
 import com.atguigu.util.QiniuUtils;
-import com.atguigu.util.RedisConstant;
+import com.atguigu.constant.RedisConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.JedisPool;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 @RestController

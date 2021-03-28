@@ -5,7 +5,7 @@ import com.atguigu.dao.SetmealDao;
 import com.atguigu.entity.PageResult;
 import com.atguigu.pojo.Setmeal;
 import com.atguigu.service.SetmealService;
-import com.atguigu.util.RedisConstant;
+import com.atguigu.constant.RedisConstant;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;

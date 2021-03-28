@@ -19,7 +19,7 @@ public class SMSUtils {
         String host = "http://dingxin.market.alicloudapi.com";
         String path = "/dx/sendSms";
         String method = "POST";
-        String appcode = "97c8ccac3fd5436a8e7ab5bbcc7c7498";
+        String appcode = "544e3fd63b8c4f3083a094dc0774c71e";
         Map<String, String> headers = new HashMap<String, String>();
         //最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105
         headers.put("Authorization", "APPCODE " + appcode);

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.dao.OrderDao">
+    <select id="findByCondition" resultType="order" parameterType="map">
+        select id,member_id,orderDate,orderType,orderStatus,setmeal_id from t_order
+        where member_id=#{memberId} and orderDate=#{orderDate} and setmeal_id=#{setmealId}
+    </select>
+
+    <insert id="add" parameterType="order" useGeneratedKeys="true" keyProperty="id">
+        insert into t_order(member_id,orderDate,orderType,orderStatus,setmeal_id)
+        value(#{memberId},#{orderDate},#{orderType},#{orderStatus},#{setmealId})
+    </insert>
+
+    <select id="findById" parameterType="integer" resultType="map">
+        select  t_member.name member,t_setmeal.name setmeal,t_order.orderDate orderDate,t_order.orderType orderType
+        from t_order,t_member,t_setmeal
+        where t_order.member_id = t_member.id
+        and t_order.setmeal_id = t_setmeal.id
+        and t_order.id=#{id}
+    </select>
+
+</mapper>

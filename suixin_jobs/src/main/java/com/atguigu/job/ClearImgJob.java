@@ -1,7 +1,7 @@
 package com.atguigu.job;
 
 import com.atguigu.util.QiniuUtils;
-import com.atguigu.util.RedisConstant;
+import com.atguigu.constant.RedisConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.JedisPool;
 
