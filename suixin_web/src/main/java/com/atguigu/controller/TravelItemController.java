@@ -7,6 +7,7 @@ import com.atguigu.entity.QueryPageBean;
 import com.atguigu.entity.Result;
 import com.atguigu.pojo.TravelItem;
 import com.atguigu.service.TravelItemService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ public class TravelItemController {
     @Reference
     private TravelItemService travelItemService;
 
+    @PreAuthorize("hasAnyAuthority('TRAVELITEM_ADD')")
     @RequestMapping("/add")
     public Result add(@RequestBody TravelItem travelItem){
         try {
@@ -35,6 +37,7 @@ public class TravelItemController {
         return travelItemService.findPage(queryPageBean.getCurrentPage(),queryPageBean.getPageSize(),queryPageBean.getQueryString());
     }
 
+    @PreAuthorize("hasAnyAuthority('TRAVELITEM_DELETE')")
     @RequestMapping("/deleteById")
     public Result deleteById(Integer id){
         try {
@@ -48,12 +51,14 @@ public class TravelItemController {
         return new Result(true, MessageConstant.DELETE_TRAVELITEM_SUCCESS);
     }
 
+    @PreAuthorize("hasAuthority('TRAVELITEM_QUERY')")
     @RequestMapping("/findById")
     public Result findById(Integer id){
         TravelItem travelItem = travelItemService.findById(id);
         return new Result(true, MessageConstant.QUERY_TRAVELITEM_SUCCESS,travelItem);
     }
 
+    @PreAuthorize("hasAuthority('TRAVELITEM_EDIT')")
     @RequestMapping("/edit")
     public Result edit(@RequestBody TravelItem travelItem){
         try {
