@@ -11,4 +11,8 @@
         value(#{fileNumber},#{name},#{sex},#{idCard},#{phoneNumber},#{regTime},#{password},#{email},#{birthday},#{remark})
     </insert>
 
+    <select id="getMemberReport" resultType="integer" parameterType="string">
+        select count(id) from t_member where regTime &lt;= #{lastDayOfMonth}
+    </select>
+
 </mapper>
