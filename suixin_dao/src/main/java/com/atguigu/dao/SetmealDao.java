@@ -5,6 +5,7 @@ import com.github.pagehelper.Page;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface SetmealDao {
     //添加套餐游
@@ -17,4 +18,6 @@ public interface SetmealDao {
     List<Setmeal> getSetmeal();
     //根据id查询套餐游
     Setmeal findById(Integer id);
+    // 统计套餐预约人数占比
+    List<Map<String, Object>> findSetmealCount();
 }

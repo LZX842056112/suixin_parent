@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.JedisPool;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service(interfaceClass = SetmealService.class)
 @Transactional
@@ -57,5 +59,18 @@ public class SetmealServiceImpl implements SetmealService{
     @Override
     public Setmeal findById(Integer id) {
         return setmealDao.findById(id);
+    }
+
+    @Override
+    public Map<String, Object> getSetmealReport() {
+        List<Map<String,Object>> setmealCount= setmealDao.findSetmealCount();
+        Map<String,Object> map = new HashMap<>();
+        map.put("setmealCount",setmealCount);
+        List<String> setmealNames = new ArrayList<>();
+        for (Map<String, Object> objectMap : setmealCount) {
+            setmealNames.add((String) objectMap.get("setmealName"));
+        }
+        map.put("setmealNames",setmealNames);
+        return map;
     }
 }

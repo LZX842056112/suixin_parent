@@ -4,6 +4,7 @@ import com.atguigu.entity.PageResult;
 import com.atguigu.pojo.Setmeal;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SetmealService {
     //添加套餐游
@@ -14,4 +15,6 @@ public interface SetmealService {
     List<Setmeal> getSetmeal();
     //根据id查询套餐游
     Setmeal findById(Integer id);
+    // 统计套餐预约人数占比
+    Map<String, Object> getSetmealReport();
 }

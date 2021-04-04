@@ -40,4 +40,12 @@
     <select id="findById" parameterType="integer" resultMap="findTravelGroups">
         select id,name,code,helpCode,sex,age,price,remark,attention,img from t_setmeal where id=#{id}
     </select>
+
+    <select id="findSetmealCount" resultType="hashmap">
+        select t_setmeal.name setmealName,count(t_setmeal.id) setmealCount
+        from t_order,t_setmeal
+        where t_order.setmeal_id=t_setmeal.id
+        group by t_setmeal.name
+        order by setmealCount desc
+    </select>
 </mapper>
