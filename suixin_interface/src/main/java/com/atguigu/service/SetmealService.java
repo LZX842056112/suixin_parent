@@ -15,6 +15,4 @@ public interface SetmealService {
     List<Setmeal> getSetmeal();
     //根据id查询套餐游
     Setmeal findById(Integer id);
-    // 统计套餐预约人数占比
-    Map<String, Object> getSetmealReport();
 }

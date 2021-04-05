@@ -12,11 +12,43 @@
     </insert>
 
     <select id="findById" parameterType="integer" resultType="map">
-        select  t_member.name member,t_setmeal.name setmeal,t_order.orderDate orderDate,t_order.orderType orderType
+        select t_member.name member,t_setmeal.name setmeal,t_order.orderDate orderDate,t_order.orderType orderType
         from t_order,t_member,t_setmeal
         where t_order.member_id = t_member.id
         and t_order.setmeal_id = t_setmeal.id
         and t_order.id=#{id}
     </select>
 
+    <select id="getSetmealReport" resultType="map">
+        select t_setmeal.name name,count(t_setmeal.id) value
+        from t_setmeal,t_order
+        where t_setmeal.id = t_order.setmeal_id
+        group by t_setmeal.id
+        order by value desc
+    </select>
+
+    <select id="findTodayOrderNumber" resultType="integer" parameterType="string">
+        select count(id) from t_order where orderDate=#{today}
+    </select>
+
+    <select id="findWeekOrMonthOrderNumber" resultType="integer" parameterType="map">
+        select count(id) from t_order where orderDate between #{begin} and #{end}
+    </select>
+
+    <select id="findTodayVisitsNumber" resultType="integer" parameterType="string">
+        select count(id) from t_order where orderDate=#{today} and orderStatus='已出游'
+    </select>
+
+    <select id="findWeekOrMonthVisitsNumber" resultType="integer" parameterType="map">
+        select count(id) from t_order where orderDate between #{begin} and #{end} and orderStatus='已出游'
+    </select>
+
+    <select id="findHotSetmeal" resultType="map" >
+        select t_setmeal.name name, count(t_setmeal.id) setmeal_count, count(t_setmeal.id)/(select count(id) from t_order) proportion
+        from t_order,t_setmeal
+        where t_order.setmeal_id = t_setmeal.id
+        group by t_setmeal.id
+        order by setmeal_count desc
+        limit 0,4
+    </select>
 </mapper>

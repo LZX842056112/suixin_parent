@@ -60,17 +60,4 @@ public class SetmealServiceImpl implements SetmealService{
     public Setmeal findById(Integer id) {
         return setmealDao.findById(id);
     }
-
-    @Override
-    public Map<String, Object> getSetmealReport() {
-        List<Map<String,Object>> setmealCount= setmealDao.findSetmealCount();
-        Map<String,Object> map = new HashMap<>();
-        map.put("setmealCount",setmealCount);
-        List<String> setmealNames = new ArrayList<>();
-        for (Map<String, Object> objectMap : setmealCount) {
-            setmealNames.add((String) objectMap.get("setmealName"));
-        }
-        map.put("setmealNames",setmealNames);
-        return map;
-    }
 }
